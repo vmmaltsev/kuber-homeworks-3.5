@@ -122,3 +122,7 @@ kubectl logs <новое_имя_пода> -n web
 Замените <новое_имя_пода> на имя пода, которое вы получили после выполнения команды kubectl get pods -n web.
 
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_177.png)
+
+Под работает корректно.
+
+Манифест web-consumer доступен по ссылке: https://github.com/vmmaltsev/kuber-homeworks-3.5/blob/main/web-consumer-deployment.yaml
