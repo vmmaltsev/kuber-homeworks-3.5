@@ -15,9 +15,9 @@
 
 1. Приложение установлено
 
-    [alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_170.png)
+    ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_170.png)
 
-    [alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_171.png)
+    ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_171.png)
 
 2. Так как приложение web-consumer не может подключиться, то необходимо посмотреть логи этого пода командой 
 
@@ -27,7 +27,7 @@
     
     ```
 
-    [alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_172.png)
+    ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_172.png)
 
     Сообщение об ошибке, показанное на вашем скриншоте, говорит о том, что под web-consumer не может разрешить имя хоста auth-db. Это обычно означает, что в кластере Kubernetes не работает разрешение DNS для сервиса auth-db.
 
@@ -38,11 +38,11 @@
 
     1. Проблема с DNS: Возможно, в кластере есть проблемы с сервисом CoreDNS, который отвечает за DNS разрешение внутри кластера. Вам нужно проверить статус и логи подов CoreDNS. Если выявлены проблемы, может потребоваться перезапустить поды CoreDNS.
 
-        [alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_173.png)
+        ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_173.png)
 
         Поды CoreDNS находятся в статусе Running
 
-        [alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_174.png)
+        ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_174.png)
 
         Видно сообщение лога от CoreDNS, которое говорит: "Still waiting on: 'kubernetes'". Это может означать, что CoreDNS еще не завершил инициализацию и ожидает готовности некоторых компонентов Kubernetes, чтобы начать обработку DNS-запросов.
 
@@ -56,7 +56,7 @@
 
         nslookup auth-db.data.svc.cluster.local
 
-        [alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_175.png)
+        ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_175.png)
 
         На предоставленном скриншоте видно, что выполнение команды nslookup для auth-db.data.svc.cluster.local успешно возвращается с IP-адресом сервиса auth-db. Это подтверждает, что DNS-разрешение внутри кластера работает правильно.
 
@@ -70,7 +70,7 @@ kubectl describe pod <имя_пода_web-consumer> -n web
 
 Проверка раздела Environment Variables для переменных, связанных с подключением к базе данных.
 
-[alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_176.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_176.png)
 
 Можно видеть, что внутри контейнера выполняется команда curl auth-db, которая пытается обратиться к auth-db, не используя полное доменное имя. Исходя из результатов nslookup, который вы выполнили ранее, полное доменное имя для auth-db должно быть auth-db.data.svc.cluster.local.
 
@@ -121,4 +121,4 @@ kubectl get pods -n web
 kubectl logs <новое_имя_пода> -n web
 Замените <новое_имя_пода> на имя пода, которое вы получили после выполнения команды kubectl get pods -n web.
 
-[alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_177.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_177.png)
